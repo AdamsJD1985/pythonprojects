@@ -12,16 +12,16 @@ class Player:
         self._lives -= 1
 
     # your code goes here
-    def isAlive(self, lives):
-        self._lives = lives
+    @property
+    def isAlive(self):
         if self._lives > 0:
             return True
-        elif self._lives <= 0:
+        else:
             return False
+
 
 p = Player("Cyberpunk77", int(input()))
 i = 1
-
 while True:
     p.hit()
     print("Hit # " + str(i))
@@ -29,3 +29,5 @@ while True:
     if not p.isAlive:
         print("Game Over")
         break
+    else:
+        continue
