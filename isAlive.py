@@ -3,31 +3,40 @@
 Complete the code by adding the isAlive property."""
 
 
-class Player:
+class Enemy:
+    name = ""
+    lives = 0
+
     def __init__(self, name, lives):
         self.name = name
-        self._lives = lives
+        self.lives = lives
 
     def hit(self):
-        self._lives -= 1
-
-    # your code goes here
-    @property
-    def isAlive(self):
-        if self._lives > 0:
-            return True
+        self.lives -= 1
+        if self.lives <= 0:
+            print(self.name + ' killed')
         else:
-            return False
+            print(self.name + ' has ' + str(self.lives) + ' lives')
 
 
-p = Player("Cyberpunk77", int(input()))
-i = 1
+class Monster(Enemy):
+    def __init__(self):
+        super().__init__('Monster', 3)
+
+
+class Alien(Enemy):
+    def __init__(self):
+        super().__init__('Alien', 5)
+
+
+m = Monster()
+a = Alien()
+
 while True:
-    p.hit()
-    print("Hit # " + str(i))
-    i += 1
-    if not p.isAlive:
-        print("Game Over")
+    x = input()
+    if x == "laser":
+        a.hit()
+    elif x == "gun":
+        m.hit()
+    elif x == 'exit':
         break
-    else:
-        continue
